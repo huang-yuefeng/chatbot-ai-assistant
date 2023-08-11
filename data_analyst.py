@@ -3,6 +3,15 @@ from langchain.agents import create_pandas_dataframe_agent
 from langchain.agents import (AgentType, )#ZERO_SHOT_REACT_DESCRIPTION default value
 import pandas as pd
 
+class robot_gpt(object):
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.document = pd.read_csv(file_path)
+        self.ds = create_pandas_dataframe_agent(OpenAI(temperature=0), self.document, verbose=True)
+    def run(self, question):
+        self.ds.run(question)
+
+'''
 def load_csv_file():
     """Loads a CSV file into a Pandas dataframe."""
     file_path = "./titanic.csv"
@@ -18,3 +27,4 @@ litte_ds.run("First clean the data, no null values and prepare to use it in a Ma
         Then decide which model is better to forecast the temperature \
         Tell me the decision and use this kind of model to forecast the temperature for the next 15 years \
         create a bar graph with the 15 temperatures forecasted, and save the bar graph as a jpeg file.")
+'''
