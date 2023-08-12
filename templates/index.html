@@ -102,7 +102,7 @@
       msgerChat.scrollTop += 500;
     }
 
-    function appendMessage_bot(name, img, side, text) {
+    function appendMessage_bot(name, img, side, text, image_path) {
       //   Simple solution for small apps
 		const msgHTML = `
 				<div class="msg ${side}-msg">
@@ -119,17 +119,20 @@
 					`;
 		msgerChat.insertAdjacentHTML("beforeend", msgHTML);
 
-		image_path = "../static/heatmap.jpeg"
-		image_name = ""
-		var imagehtml= 
-				`<div class="thumb" href="#">
-					<img src=`
-					+image_path
-					+` alt="" id="imageBox">`
-					+`<div class="caption">`+image_name
-					+`</div>
-				</div>`;             
-		msgerChat.insertAdjacentHTML("beforeend", imagehtml);
+		//image_path="./static/heatmap.jpeg"
+		if(image_path != null)
+		{
+			image_name = ""
+			var imagehtml= 
+					`<div class="thumb" href="#">
+						<img src=`
+						+image_path
+						+` alt="" id="imageBox">`
+						+`<div class="caption">`+image_name
+						+`</div>
+					</div>`;             
+			msgerChat.insertAdjacentHTML("beforeend", imagehtml);
+		}
 
 			/*
               var imagehtml= 
@@ -154,10 +157,8 @@
       $.get("/get", { msg: rawText }).done(function (data) {
         console.log(rawText);
         console.log(data);
-        const msgText = data;
-        appendMessage_bot(BOT_NAME, BOT_IMG, "left", msgText);
-
-
+        //const msgText = data[0];
+        appendMessage_bot(BOT_NAME, BOT_IMG, "left", data[0], data[1]);
       });
 
     }

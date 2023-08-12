@@ -1,30 +1,33 @@
 from langchain.llms import OpenAI
+import langchain
+from langchain.chat_models import ChatOpenAI
 from langchain.agents import create_pandas_dataframe_agent
 from langchain.agents import (AgentType, )#ZERO_SHOT_REACT_DESCRIPTION default value
 import pandas as pd
+import os
 
 class robot_gpt(object):
+
     def __init__(self, file_path):
         self.file_path = file_path
         self.document = pd.read_csv(file_path)
-        self.ds = create_pandas_dataframe_agent(OpenAI(temperature=0), self.document, verbose=True)
+        #loader = UnstructuredExcelLoader("example_data/stanley-cups.xlsx", mode="elements")
+        #docs = loader.load()
+        #llm = ChatOpenAI(model_name='gpt-3.5-turbo-0613', temperature=0.2)
+        #self.agent = create_pandas_dataframe_agent(llm, self.document, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS)
+        llm = OpenAI(model_name='gpt-3.5-turbo-0613', temperature=0)
+        self.agent = create_pandas_dataframe_agent(llm, self.document, verbose=True)
+        langchain.debug = True
+
     def run(self, question):
-        self.ds.run(question)
+        before = set(os.listdir("./"))
+        try:
+            answer = self.agent.run(question+" If the result can be shown in image, please save the result as a jpg file.")
+        except Exception as e:
+            template = "I have encountered an exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(e).__name__, e.args)
+            answer = message
 
-'''
-def load_csv_file():
-    """Loads a CSV file into a Pandas dataframe."""
-    file_path = "./titanic.csv"
-    #file_path = "climate_change_data.csv"
-    document = pd.read_csv(file_path)
-    return document
-
-document = load_csv_file()
-litte_ds = create_pandas_dataframe_agent(OpenAI(temperature=0), document, verbose=True)
-litte_ds.run("Analyze this data, and tell me if you see any trends. give me a conclussion with the principal trend")
-litte_ds.run("Do you see any correlations in the data? If yes tell me the principal. create a heat map for correlations, and save it as a jpeg file")
-litte_ds.run("First clean the data, no null values and prepare to use it in a Machine Leaninrg Model. \
-        Then decide which model is better to forecast the temperature \
-        Tell me the decision and use this kind of model to forecast the temperature for the next 15 years \
-        create a bar graph with the 15 temperatures forecasted, and save the bar graph as a jpeg file.")
-'''
+        after = set(os.listdir("./"))
+        diff = after.difference(before)
+        return answer,diff
