@@ -19,5 +19,8 @@ If you use a "free trial" key, you will be limited requests per day at most 200 
 - Upload a "xls", "xlsx", or "csv" file data from the button at the bottom of the page. You can find sample data at ```https://www.kaggle.com/datasets/jancui/titannic?resource=download```. If you don't upload the data file first, the chatbot doesn't know what to deal with.
 # Analyze data
 If you are using a "free trial" key, you will get the response of "Agent stopped due to iteration limit or time limit.". This is because of the limitation of 3 times calls per minute, the agent fails. Change into a "pay as you go" key to fix it.
+This is some samples result on Titanic data from my web service, just FYI.
+- statistical analysis
+![statistical_info](./sample_result/statistical_info.png)
 
 
