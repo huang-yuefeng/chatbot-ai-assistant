@@ -19,8 +19,32 @@ If you use a "free trial" key, you will be limited requests per day at most 200 
 - Upload a "xls", "xlsx", or "csv" file data from the button at the bottom of the page. You can find sample data at ```https://www.kaggle.com/datasets/jancui/titannic?resource=download```. If you don't upload the data file first, the chatbot doesn't know what to deal with.
 # Analyze data
 If you are using a "free trial" key, you will get the response of "Agent stopped due to iteration limit or time limit.". This is because of the limitation of 3 times calls per minute, the agent fails. Change into a "pay as you go" key to fix it.
-This is some samples result on Titanic data from my web service, just FYI.
+This is some samples result on Titanic data from my web service, just FYI. Although it seems good enough, but actually the API responds slow, and sometimes will throw exceptions. This is just a GPT3.5 model in 2021 with many issues. 
+- data basic infomation
+![data_info](./sample_result/data_info.png)
 - statistical analysis
 ![statistical_info](./sample_result/statistical_info.png)
+- pie plot
+![pie_plot](./sample_result/pie_graph.png)
+- scatter plot
+![scatter_plot](./sample_result/scatter_plot.png)
+- polyline plot
+![polyline plot](./sample_result/poly_line_graph.png)
+- scatter plot over two columns
+![scatter plot over two columns](./sample_result/scatter_point_2column.png)
+- correlation matrix
+![correlation matrix](./sample_result/correlation_matrix.png)
+- linear regression
+![linear regression](./sample_result/linear_regression.png)
+- logistic regression
+![linear regression](./sample_result/logistic_regression.png)
+- factorization analysis
+![factorization analysis](./sample_result/factorization_analysis.png)
+# Great acknowlegement 
+- to wechat ID ZZ2222rk
+I don't know who he is or anything about him, but he provides his OpanAI API key for me multiple times. When a key is out of date, I will contact him for a new one. This guy is very helpful with a true free spirit, so I can do this evaluation work.
+- to my little daughter
+While I was working in weekend, she just keep quiet with a comic book for hours.
+  
 
 
