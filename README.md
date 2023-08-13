@@ -26,6 +26,8 @@ This is some samples result on Titanic data from my web service, just FYI. Altho
 ![statistical_info](./sample_result/statistical_info.png)
 - pie plot
 ![pie_plot](./sample_result/pie_graph.png)
+- bar chart
+![bar chart](./sample_result/bar_chart.png)
 - scatter plot
 ![scatter_plot](./sample_result/scatter_plot.png)
 - polyline plot
