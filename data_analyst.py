@@ -17,19 +17,17 @@ class robot_gpt_csv(object):
         self.agent = self.init_agent(document)
 
     def init_agent(self, document):
-        #loader = UnstructuredExcelLoader("example_data/stanley-cups.xlsx", mode="elements")
-        #docs = loader.load()
-        #llm = ChatOpenAI(model_name='gpt-3.5-turbo-0613', temperature=0.2)
-        #self.agent = create_pandas_dataframe_agent(llm, self.document, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS)
+        #llm = OpenAI(model_name="gpt-3.5-turbo-16k-0613", temperature=0)
         llm = OpenAI(model_name="gpt-3.5-turbo-0613", temperature=0)
         agent = create_pandas_dataframe_agent(llm, document, verbose=True)
+        #agent = create_pandas_dataframe_agent(ChatOpenAI(temperature=0, model="gpt-3.5-turbo-0613"),document,verbose=True,agent_type=AgentType.OPENAI_FUNCTIONS,)
         langchain.debug = True
         return agent
 
     def run(self, question):
         before = set(os.listdir("./"))
         try:
-            answer = self.agent.run(question+" If the result can be shown in image, please save the result as a jpg file.")
+            answer = self.agent.run(question)
         except Exception as e:
             template = "I have encountered an exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(e).__name__, e.args)
