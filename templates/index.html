@@ -17,7 +17,7 @@
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
-        <i class="fas fa-bug"></i> Chatbot <i class="fas fa-bug"></i>
+        <i class="fas fa-bug"></i> Chatbot for AI <i class="fas fa-bug"></i>
       </div>
     </header>
 
@@ -27,12 +27,17 @@
 
         <div class="msg-bubble">
           <div class="msg-info">
-            <div class="msg-info-name">Chatbot</div>
-            <div class="msg-info-time">12:45</div>
+            <div class="msg-info-name">Chatbot for AI</div>
           </div>
 
           <div class="msg-text">
-            Hi, welcome to ChatBot! Go ahead and send me a message. 😄
+            Hi, welcome to ChatBot! Choose and upload a csv, xls, xlsx file for me. After that go ahead and send me a message. 😄
+          </div>
+          <div class="msg-text">
+			You can do data analysis by natural language, such as:
+          </div>
+          <div class="msg-text">
+			"Please do correlation analysis on this data, and save the result in the jpg file." If neccessary, add "save result in the jpg file", I will show you the result in visualization. 😄
           </div>
         </div>
       </div>
@@ -48,7 +53,6 @@
 	<form action="/upload"  method = "POST"  enctype="multipart/form-data">
 		<div class="form-group">
 			<!--<input type="file" name="file[]" id="File" multiple/>-->
-			<label for="info">Before chatting, please input your source csv or image.</label>
 			<input type="file" name="file[]" id="File" multiple align="right"/>
 			<button type="submit" class="btn btn-primary" align="right">Submit</button>
 		</div>
